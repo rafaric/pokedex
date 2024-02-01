@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+# Pokedex con Vite, React, Typescript, React Router y TailwindCSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web que muestra información sore los pokémon usando la API de PokeAPI. Permite ver 10 Pokémones y ordenarlos por altura, número o peso, de forma ascendente o descendente. También permite ver los detalles de cada uno.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para ejecutar este proyecto necesitas tener instalado Node.Js, Yarn y Vite.
 
-## Expanding the ESLint configuration
+## Instalación y Uso
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Para instalar las dependencias del proyecto, ejecuta en la carpeta raíz del proyecto el comando:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+yarn install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Para iniciar el servidor de desarrollo, ejecuta el comando:
+
+```bash
+yarn dev
+```
+
+Para construir el proyecto para producción, ejecuta el comando:
+
+```bash
+yarn build
+```
+
+## Teconologías:
+
+Este proyecto utiliza las siguientes tecnologías:
+
+-**Vite**: Una herramienta de desarrollo web que permite crear aplicaciones web modernas con un alto rendimiento y una rápida recarga en caliente.
+
+-**React**: Una libreria de JavaScript para crear interfaces de usuario interactivas y reutilizables.
+
+-**TypeScript**: Un lenguaje de programación que extiende JavaScript con tipado estático y otras características.
+
+-**React Router**: Una librería de REact para gestionar la navegación y el enrutamiento de las páginas de la aplicación.
+
+-**TailwindCSS**: Un framework de CSS que permite crear diseños personalizados y responsivos con clases de utilidad.
+
+## Características:
+
+Este proyecto tiene las siguientes características:
+
+-**Diseño Moderno y Responsivo**: Puede ver la pagina en distintos dispositivos sin problemas de visualización.
+
+-**Ordenamiento**: La aplicación permite ordenar los Pokémones por altura, número y peso, tanto descendente como ascendentemente.
+
+-**Detalles de los Pokémones**: Muestra los detalles de cada pokémon: Nombre, número, tipo, habilidades y estadísticas.
+
+## Demostración:
+
+Aquí puedes ver algunas imágenes de la apliación: ![Captura de pantalla de la página principal](../pokedex/src/assets/Pantalla%20Principal.png) ![Captura de pantalla de la página de detalles](../pokedex/src/assets/Pantalla%20detalles.png)
+
+## Licencia:
+
+Este proyecto está licenciado bajo la licencia MIT. Puedes ver el archivo License para mas detalles.
+
+# API:
+
+https://pokeapi.co/
