@@ -11,11 +11,7 @@ const Card = ({ pokemonInfo }: { pokemonInfo: PokemonInfo }) => {
       <h1 className="text-center pb-2 text-xl">
         {pokemonInfo.name.charAt(0).toUpperCase() + pokemonInfo.name.slice(1)}
       </h1>
-      <img
-        className="w-[90%] h-[60%] pb-2"
-        src={pokemonInfo.sprites.other.dream_world.front_default}
-        alt=""
-      />
+      <img className="w-[90%] h-[60%] pb-2" src={pokemonInfo.image} alt="" />
       <div>
         <p>Peso: {(pokemonInfo.weight * 0.1).toFixed(2)} Kg.</p>
         <p>Altura: {pokemonInfo.height / 10} mts.</p>

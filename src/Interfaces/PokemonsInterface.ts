@@ -2,13 +2,7 @@ export interface PokemonInfo {
   name: string;
   id: number;
   types: [{ type: { name: string } }];
-  sprites: {
-    other: {
-      dream_world: {
-        front_default: string;
-      };
-    };
-  };
+  image: string;
   order: number;
   stats: [{ base_stat: number; stat: { name: string } }];
   weight: number;
@@ -27,4 +21,12 @@ export interface PokemonInfo {
   evolution_details: [{ min_level: number }];
   gender_rate: number;
   capture_rate: number;
+}
+
+export interface Pokemon {
+  id: number;
+  name: string;
+  image: string;
+  weight: number;
+  height: number;
 }

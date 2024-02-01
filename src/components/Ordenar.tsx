@@ -1,30 +1,32 @@
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
+interface SortProps {
+  sortBy: "id" | "weight" | "height";
+  order: "asc" | "desc";
+  onChangeSortBy: (newSortBy: "id" | "weight" | "height") => void;
+  onChangeOrder: (newOrder: "asc" | "desc") => void;
+}
+
 const Ordenar = ({
-  orden,
-  orden2,
-  setOrden,
-  setOrden2,
-}: {
-  orden: string;
-  orden2: number;
-  setOrden: React.Dispatch<React.SetStateAction<string>>;
-  setOrden2: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+  sortBy,
+  order,
+  onChangeSortBy,
+  onChangeOrder,
+}: SortProps) => {
   const onClickPeso = () => {
-    setOrden("peso");
+    onChangeSortBy("weight");
   };
   const onClickNumero = () => {
-    setOrden("numero");
+    onChangeSortBy("id");
   };
   const onClickAltura = () => {
-    setOrden("altura");
+    onChangeSortBy("height");
   };
   const onClickAsc = () => {
-    setOrden2(0);
+    onChangeOrder("asc");
   };
   const onClickDesc = () => {
-    setOrden2(1);
+    onChangeOrder("desc");
   };
   return (
     <div className="flex flex-col w-full items-center">
@@ -33,7 +35,7 @@ const Ordenar = ({
         <div className="flex rounded-md hover:border-2 border-2 cursor-pointer justify-center text-center">
           <button
             className={`bg-slate-400 hover:bg-slate-500 cursor-pointer rounded-l-md px-3 w-20 border-r-2 hover:text-white ${
-              orden === "peso" ? "bg-slate-600 text-white" : ""
+              sortBy === "weight" ? "bg-slate-600 text-white" : ""
             }`}
             onClick={onClickPeso}
           >
@@ -41,7 +43,7 @@ const Ordenar = ({
           </button>
           <button
             className={` bg-slate-400 hover:bg-slate-500 cursor-pointer px-3 w-20 hover:text-white ${
-              orden === "numero" ? "bg-slate-600 text-white" : ""
+              sortBy === "id" ? "bg-slate-600 text-white" : ""
             }`}
             onClick={onClickNumero}
           >
@@ -49,7 +51,7 @@ const Ordenar = ({
           </button>
           <button
             className={`bg-slate-400 hover:bg-slate-500 cursor-pointer border-l-2 rounded-r-md px-3 w-20 hover:text-white ${
-              orden === "altura" ? "bg-slate-600 text-white" : ""
+              sortBy === "height" ? "bg-slate-600 text-white" : ""
             }`}
             onClick={onClickAltura}
           >
@@ -62,7 +64,7 @@ const Ordenar = ({
         >
           <button
             className={`w-8 border-r-2 px-2 hover:bg-slate-200 rounded-l-md ${
-              orden2 === 1 ? "bg-black text-white" : ""
+              order === "desc" ? "bg-black text-white" : ""
             }`}
             onClick={onClickDesc}
             title="Descendente"
@@ -71,7 +73,7 @@ const Ordenar = ({
           </button>
           <button
             className={`w-8 px-2 hover:bg-slate-200 rounded-r-md ${
-              orden2 === 0 ? "bg-black text-white" : ""
+              order === "asc" ? "bg-black text-white" : ""
             }`}
             onClick={onClickAsc}
           >

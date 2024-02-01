@@ -3,9 +3,10 @@ import Card from "./Card";
 
 const Listado = ({ listado }: { listado: PokemonInfo[] | undefined }) => {
   return (
-    <div className="flex flex-wrap w-full gap-2 h-[90%] justify-center py-10">
-      {listado && listado.map((poke) => <Card pokemonInfo={poke} />)}
-    </div>
+    <>
+      {listado &&
+        listado.map((poke) => <Card key={poke.id} pokemonInfo={poke} />)}
+    </>
   );
 };
 

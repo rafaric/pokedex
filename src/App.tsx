@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { PokemonInfo } from "./Interfaces/PokemonsInterface";
 
@@ -6,60 +6,65 @@ import Listado from "./components/Listado";
 import Navegacion from "./components/Navegacion";
 import { getPokemones } from "./helpers/getFromApi";
 import Ordenar from "./components/Ordenar";
-import Bienvenida from "./components/Bienvenida";
+import Bienvenida from "./components/CargaInicial";
 
 function App() {
   const [pokemon, setPokemons] = useState<PokemonInfo[]>([]);
-  const [orden, setOrden] = useState<string>("");
-  const [orden2, setOrden2] = useState<number>(0);
+  const [orden, setOrden] = useState<"asc" | "desc">("asc");
+  const [orden2, setOrden2] = useState<"id" | "weight" | "height">("id");
 
   useEffect(() => {
-    function get() {
-      getPokemones().then((resultado) => setPokemons(resultado));
+    async function fetchData() {
+      const response = await getPokemones();
+      setPokemons(response);
     }
 
-    if (pokemon.length === 0) {
-      get();
-    }
-  }, [pokemon.length, orden]);
+    fetchData();
+  }, []);
+  //Funcion para ordenar los pokemones
+  const sortPokemons = (
+    pokemons: PokemonInfo[],
+    sortBy: "id" | "weight" | "height",
+    order: "asc" | "desc"
+  ) => {
+    return pokemons.sort((a, b) => {
+      if (a[sortBy] < b[sortBy]) {
+        return order === "asc" ? -1 : 1;
+      } else if (a[sortBy] > b[sortBy]) {
+        return order === "asc" ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  };
+  //Funcion para cambiar el criterio de ordenamiento
+  const handleChangeSortBy = (newSortBy: "id" | "weight" | "height") => {
+    setOrden2(newSortBy);
+    const sortedPokemons = sortPokemons(pokemon, newSortBy, orden);
+    setPokemons(sortedPokemons);
+  };
 
-  const sortedPokemon = useMemo(() => {
-    if (orden === "altura") {
-      if (orden2 === 1) {
-        return pokemon.sort((a, b) => b.height - a.height);
-      } else {
-        return pokemon.sort((a, b) => a.height - b.height);
-      }
-    }
-    if (orden === "numero") {
-      if (orden2 === 1) {
-        return pokemon.sort((a, b) => b.order - a.order);
-      } else {
-        return pokemon.sort((a, b) => a.order - b.order);
-      }
-    }
-    if (orden === "peso") {
-      if (orden2 === 1) {
-        return pokemon.sort((a, b) => b.weight - a.weight);
-      } else {
-        return pokemon.sort((a, b) => a.weight - b.weight);
-      }
-    }
-  }, [orden, orden2, pokemon]);
-
+  //Funcion para cambiar el orden de ordenamiento
+  const handleChangeOrder = (newOrder: "asc" | "desc") => {
+    setOrden(newOrder);
+    const sortedPokemons = sortPokemons(pokemon, orden2, newOrder);
+    setPokemons(sortedPokemons);
+  };
   return (
     <>
       <Navegacion />
       <Ordenar
-        orden={orden}
-        orden2={orden2}
-        setOrden={setOrden}
-        setOrden2={setOrden2}
+        order={orden}
+        sortBy={orden2}
+        onChangeSortBy={handleChangeSortBy}
+        onChangeOrder={handleChangeOrder}
       />
-      {!sortedPokemon?.length ? (
+      {!pokemon?.length ? (
         <Bienvenida />
       ) : (
-        <Listado listado={sortedPokemon} />
+        <div className="flex flex-wrap w-full gap-2 h-[90%] justify-center py-10">
+          <Listado listado={pokemon} />
+        </div>
       )}
     </>
   );
