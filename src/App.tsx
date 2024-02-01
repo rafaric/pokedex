@@ -33,7 +33,6 @@ function App() {
     }
     if (orden === "numero") {
       if (orden2 === 1) {
-        getPokemones().then((resultado) => setPokemons(resultado));
         return pokemon.sort((a, b) => b.order - a.order);
       } else {
         return pokemon.sort((a, b) => a.order - b.order);
