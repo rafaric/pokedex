@@ -52,7 +52,7 @@ Este proyecto tiene las siguientes características:
 
 ## Demostración:
 
-Aquí puedes ver algunas imágenes de la apliación: ![Captura de pantalla de la página principal](../pokedex/src/assets/Pantalla%20Principal.png) ![Captura de pantalla de la página de detalles](../pokedex/src/assets/Pantalla%20detalles.png)
+Aquí puedes ver algunas imágenes de la apliación: ![Captura de pantalla de la página principal](PantallaPrincipal.png) ![Captura de pantalla de la página de detalles](Pantalladetalles.png)
 
 ## Licencia:
 
