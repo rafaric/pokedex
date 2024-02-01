@@ -22,7 +22,6 @@ export const getPokemones = async () => {
 export const getPokemonInfo = async (url: string) => {
   const pokemon = await fetch(url)
     .then((response) => response.json())
-    .then((data) => data)
-    .catch((error) => error);
+    .then((data) => data);
   return pokemon;
 };
