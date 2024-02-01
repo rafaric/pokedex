@@ -6,7 +6,7 @@ import Listado from "./components/Listado";
 import Navegacion from "./components/Navegacion";
 import { getPokemones } from "./helpers/getFromApi";
 import Ordenar from "./components/Ordenar";
-import Bienvenida from "./components/Bienvenida";
+import Bienvenida from "./components/CargaInicial";
 
 function App() {
   const [pokemon, setPokemons] = useState<PokemonInfo[]>([]);
@@ -59,7 +59,13 @@ function App() {
         onChangeSortBy={handleChangeSortBy}
         onChangeOrder={handleChangeOrder}
       />
-      {!pokemon?.length ? <Bienvenida /> : <Listado listado={pokemon} />}
+      {!pokemon?.length ? (
+        <Bienvenida />
+      ) : (
+        <div className="flex flex-wrap w-full gap-2 h-[90%] justify-center py-10">
+          <Listado listado={pokemon} />
+        </div>
+      )}
     </>
   );
 }

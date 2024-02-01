@@ -10,9 +10,13 @@ const Description = () => {
   const [hideM, setHideM] = useState<boolean>(true);
   const { id } = useParams();
   if (id) {
-    getPokemonInfo(`https://pokeapi.co/api/v2/pokemon/${id}`).then((result) =>
-      setPokemon(result)
-    );
+    getPokemonInfo(`https://pokeapi.co/api/v2/pokemon/${id}`).then((result) => {
+      const modifiedPokemon = {
+        ...result,
+        image: result.sprites.other.dream_world.front_default,
+      };
+      setPokemon(modifiedPokemon);
+    });
   }
 
   const onClickStats = () => {
@@ -27,10 +31,7 @@ const Description = () => {
       {pokemon ? (
         <div className="flex flex-col md:flex-row my-10 mx-auto md:justify-between w-[90%] items-center border-2  border-orange-300 rounded-lg shadow-xl p-3 bg-yellow-100/40 md:h-full">
           <div className="md:w-[50%] w-[80%] flex md:py-0 md:flex-col md:items-start justify-center py-4 bg-yellow-100 rounded-full md:mx-10 md:relative md:h-full">
-            <img
-              src={pokemon?.sprites.other.dream_world.front_default}
-              className="w-[80%] md:w-full "
-            />
+            <img src={pokemon?.image} className="w-[80%] md:w-full " />
           </div>
           <div className="flex flex-col items-center w-full my-3">
             <h1 className="text-2xl p-2 bg-blue-200 rounded-full">
